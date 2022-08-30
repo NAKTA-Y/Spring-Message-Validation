@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+        .border-error {
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2 th:text="#{page.register}"></h2>
+    </div>
+    <h4 class="mb-3" th:text="#{page.inputItem}"></h4>
+    <form th:action="@{/validation/v1/register}" th:object="${item}" method="post">
+        <div>
+            <label th:for="name" th:text="#{label.item.name}"></label>
+            <input type="text" th:field="*{name}"
+                   th:class="${errors?.containsKey('name')} ? 'form-control border-error' : 'form-control'"
+                   class="form-control" placeholder="이름을 입력하세요">
+            <div th:if="${errors?.containsKey('name')}" class="field-error">
+                <p th:text="${errors.get('name')}">상품 이름 에러 메시지</p>
+            </div>
+        </div>
+
+        <div>
+            <label th:for="price" th:text="#{label.item.price}"></label>
+            <input type="text" th:field="*{price}"
+                   th:class="${errors?.containsKey('price')} ? 'form-control border-error' : 'form-control'"
+                   class="form-control" placeholder="가격을 입력하세요">
+            <div th:if="${errors?.containsKey('price')}" class="field-error">
+                <p th:text="${errors.get('price')}">상품 가격 에러 메시지</p>
+            </div>
+        </div>
+
+        <div>
+            <label th:for="quantity" th:text="#{label.item.quantity}"></label>
+            <input type="text" th:field="*{quantity}"
+                   th:class="${errors?.containsKey('quantity')} ? 'form-control border-error' : 'form-control'"
+                   class="form-control" placeholder="수량을 입력하세요">
+            <div th:if="${errors?.containsKey('quantity')}" class="field-error">
+                <p th:text="${errors.get('quantity')}">상품 수량 에러 메시지</p>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div th:if="${errors?.containsKey('globalError')}" class="field-error">
+            <p th:text="${errors.get('globalError')}">글로벌 에러 메시지</p>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.save}"></button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        th:onclick="|location.href='@{/validation/v1/list}'|"
+                        type="button" th:text="#{button.cancel}"></button>
+            </div>
+        </div>
+    </form>
+</div> <!-- /container -->
+</body>
+</html>

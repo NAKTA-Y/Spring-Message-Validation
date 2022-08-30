@@ -17,7 +17,7 @@ public class ItemController {
 
     ItemRepository itemRepository = ItemRepository.getInstance();
 
-    @GetMapping
+    @GetMapping("list")
     public String itemList(Model model) {
 
         List<Item> items = itemRepository.findAll();
