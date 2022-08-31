@@ -21,11 +21,13 @@ public class ItemRepository {
         return new ArrayList<>(store.values());
     }
 
-    public void save(Item item) {
+    public Item save(Item item) {
 
         item.setId(++sequence);
 
         store.put(item.getId(), item);
+
+        return item;
     }
 
     public Item findOne(Long itemId) {
@@ -35,7 +37,9 @@ public class ItemRepository {
 
     public void modify(Item updateItem) {
 
-        store.replace(updateItem.getId(), updateItem);
+        Long itemId = updateItem.getId();
+
+        store.replace(itemId, updateItem);
     }
 
     public void delete(Long itemId) {
