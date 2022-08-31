@@ -15,7 +15,8 @@ import java.util.Map;
 @Slf4j
 public class ItemController {
 
-    ItemRepository itemRepository = ItemRepository.getInstance();
+    private final ItemRepository itemRepository = ItemRepository.getInstance();
+
 
     @GetMapping("list")
     public String itemList(Model model) {

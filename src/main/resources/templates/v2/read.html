@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2 th:text="#{page.read}"></h2>
+    </div>
+
+    <h2 th:if="${param.status}" th:text="|저장 완료|"></h2>
+
+    <div>
+        <label th:for="itemId" th:text="#{label.item.id}"></label>
+        <input type="text" th:field="${item.id}" class="form-control" readonly>
+    </div>
+
+    <div>
+        <label th:for="name" th:text="#{label.item.name}"></label>
+        <input type="text" th:field="${item.name}" class="form-control" readonly>
+    </div>
+
+    <div>
+        <label th:for="price" th:text="#{label.item.price}"></label>
+        <input type="text" th:field="${item.price}" class="form-control" readonly>
+    </div>
+
+    <div>
+        <label th:for="quantity" th:text="#{label.item.quantity}"></label>
+        <input type="text" th:field="${item.quantity}" class="form-control" readonly>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='editForm.html'"
+                    th:onclick="|location.href='@{/validation/v2/modify/{itemId}(itemId=${item.id})}'|" type="button" th:text="#{button.modify}"></button>
+        </div>
+
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    th:onclick="|location.href='@{/validation/v2/list}'|"
+                    type="button" th:text="#{button.list}"></button>
+        </div>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

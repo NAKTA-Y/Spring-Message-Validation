@@ -1,4 +1,4 @@
-package hello.itemservice.controller.validation.v1;
+package hello.itemservice.controller.validation.controller.v1;
 
 import hello.itemservice.domain.item.Item;
 import hello.itemservice.repository.ItemRepository;
@@ -40,9 +40,6 @@ public class ValidationItemV1Controller {
 
     @PostMapping("/register")
     public String registerItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes, Model model) {
-
-        log.info("item.price = {}", item.getPrice());
-        log.info("item.quantity = {}", item.getQuantity());
 
         // 검증 오류 결과를 보관
         Map<String, String> errors = new HashMap<>();
@@ -103,7 +100,7 @@ public class ValidationItemV1Controller {
         return "/v1/modify";
     }
 
-    @PostMapping ("/modify")
+    @PostMapping("/modify")
     public String modify(@ModelAttribute Item item) {
 
         itemRepository.modify(item);
